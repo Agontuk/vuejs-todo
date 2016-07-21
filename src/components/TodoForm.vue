@@ -20,7 +20,7 @@
         methods: {
             createTask: function () {
                 if (this.title !== '') {
-                    this.$parent.saveTask(this.title);
+                    this.$dispatch('task-create', this.title);
                     this.title = '';
                 }
             }

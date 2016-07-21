@@ -15,10 +15,10 @@ export default {
     props: ['tasks'],
     methods: {
         toggleComplete: function (task) {
-            this.$parent.toggleComplete(task);
+            this.$dispatch('toggle-complete', task);
         },
         deleteTask: function (task) {
-            this.$parent.deleteTask(task);
+            this.$dispatch('task-delete', task);
         }
     }
 }

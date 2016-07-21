@@ -33,14 +33,14 @@ export default {
             tasks: []
         }
     },
-    methods: {
-        saveTask: function (title) {
+    events: {
+        'task-create': function (title) {
             this.tasks.push({
                 title: title,
                 completed: false
-            })
+            });
         },
-        toggleComplete: function (data) {
+        'toggle-complete': function (data) {
             this.tasks = this.tasks.map((task) => {
                 if (task.title === data.title) {
                     task.completed = ! task.completed;
@@ -50,7 +50,7 @@ export default {
                 return task;
             });
         },
-        deleteTask: function (data) {
+        'task-delete': function (data) {
             this.tasks = this.tasks.filter((task) => {
                 return task.title !== data.title;
             });
