@@ -11,16 +11,19 @@
               <h1>All Tasks</h1>
               <div id="task-list">
 
-                <todos :tasks="tasks" v-if="tasks.length"></todos>
-                <p v-else>No tasks</p>
+                <todos :tasks="tasks | filterTask filter"></todos>
 
               </div>
+              <button @click="filterTask" v-if="tasks.length">All</button>
+              <button @click="filterTask" v-if="tasks.length">Active</button>
+              <button @click="filterTask" v-if="tasks.length">Completed</button>
           </div>
       </div>
   </div>
 </template>
 
 <script>
+import { filterTask } from './filters/index.js';
 import TodoForm from './components/TodoForm';
 import Todos from './components/Todos';
 
@@ -30,7 +33,8 @@ export default {
     },
     data: function () {
         return {
-            tasks: []
+            tasks: [],
+            filter: 'all'
         }
     },
     events: {
@@ -54,6 +58,12 @@ export default {
             this.tasks = this.tasks.filter((task) => {
                 return task.title !== data.title;
             });
+        }
+    },
+    methods: {
+        filterTask: function (e) {
+            const text = e.target.innerText;
+            this.filter = text.toLowerCase();
         }
     }
 }
