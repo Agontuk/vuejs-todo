@@ -1,4 +1,4 @@
-# my-vue-project
+# TODO App
 
 > A Vue.js project
 
